@@ -39,7 +39,7 @@
       "rm -rf wordpress",
       "rm -f latest.tar.gz"
     ],
-    "wordpress:install": "$( composer run wp:cli ) core install --url=127.0.0.1:8080 --title=CarbonWordPress --admin_user=carbonorm '--admin_password=c6P@$s30rd#8675309#@' --admin_email=test@example.com",
+    "wordpress:install": "$( composer run wp:cli ) core install --url=renovate.miles.systems --title=RenovateCompanyWordPress --admin_user=RenovateCompany '--admin_password=c6Renov@t3C$ompanyP@$s30rd#8675309#@' --admin_email=richard@miles.systems",
     "apache:linkApplication": [
       "mkdir -p ./logs/httpd/",
       "rm /usr/local/var/www",
