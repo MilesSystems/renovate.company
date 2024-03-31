@@ -1,0 +1,55 @@
+# @link https://serverfault.com/questions/214512/redirect-change-urls-or-redirect-http-to-https-in-apache-everything-you-ever
+<IfModule mod_rewrite.c>
+
+    # Header set Connection keep-alive
+
+    RewriteEngine On
+
+    # Respond with 200OK for OPTIONS
+    RewriteCond %{REQUEST_METHOD} OPTIONS
+    RewriteRule ^(.*)$ $1 [R=200,L]
+
+    RewriteCond %{ENV:CDN} .
+    RewriteRule "^/?react/(.*)/index.html" "%{ENV:CDN}/react/$1/index.html" [P]
+
+    RewriteCond %{ENV:CDN} .
+    RewriteRule "^/?react/(.*)" "%{ENV:CDN}/react/$1" [R=302,L]
+
+    # https://www.danielmorell.com/guides/htaccess-seo/redirects/introduction-to-redirects
+    # deny access to evil robots site rippers offline browsers and other nasty scum
+    RewriteBase /
+    RewriteCond %{HTTP_USER_AGENT} ^Anarchie [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^ASPSeek [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^attach [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^autoemailspider [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^Xaldon\ WebSpider [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^Xenu [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^Zeus.*Webster [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^Zeus
+    RewriteRule ^.*$ https://www.google.com [R,L]
+    # send em to a hellish website of your choice
+
+
+    # BEGIN block author scans
+    RewriteEngine On
+    RewriteBase /
+    RewriteCond %{QUERY_STRING} (author=\d+) [NC]
+    RewriteRule .* - [F]
+    # allow direct requests to files with the following extensions
+    <FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|swf|xml|txt|css|js|svg|html|htm|hbs|json|map|woff|ttf|webp)$">
+        RewriteBase /
+        RewriteCond %{REQUEST_FILENAME} -f [OR]
+        RewriteCond %{REQUEST_FILENAME} -d
+        RewriteRule ^ - [L]
+    </FilesMatch>
+    # Block WordPress xmlrpc.php requests
+    <Files xmlrpc.php>
+        order deny,allow
+        deny from all
+    </Files>
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+    RewriteBase /
+    RewriteRule ^index\.php$ - [L]
+    RewriteRule ^wp-.*$ - [L]
+    RewriteRule . /index.php [L]
+</IfModule>
