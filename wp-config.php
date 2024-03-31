@@ -20,16 +20,16 @@
 
 // ** Database settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', 'CarbonWordPress' );
+define('DB_NAME', 'RenovateCompanyWordPress');
 
 /** Database username */
-define( 'DB_USER', 'root' );
+define('DB_USER', 'root');
 
 /** Database password */
-define( 'DB_PASSWORD', 'password' );
+define('DB_PASSWORD', dirname(__DIR__) === '/var/www' ? 'goldteamrules' : 'password');
 
 /** Database hostname */
-define( 'DB_HOST', 'localhost' );
+define('DB_HOST', dirname(__DIR__) === '/var/www' ? '35.224.229.250' : 'localhost');
 
 /** Database charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );
@@ -48,14 +48,14 @@ define( 'DB_COLLATE', '' );
  *
  * @since 2.6.0
  */
-define( 'AUTH_KEY',         'put your unique phrase here' );
-define( 'SECURE_AUTH_KEY',  'put your unique phrase here' );
-define( 'LOGGED_IN_KEY',    'put your unique phrase here' );
-define( 'NONCE_KEY',        'put your unique phrase here' );
-define( 'AUTH_SALT',        'put your unique phrase here' );
-define( 'SECURE_AUTH_SALT', 'put your unique phrase here' );
-define( 'LOGGED_IN_SALT',   'put your unique phrase here' );
-define( 'NONCE_SALT',       'put your unique phrase here' );
+define('AUTH_KEY',         ' W]PraVuDV C;O4s$oC+%RTC_Q,m#w]s-=$Ef4w%}M)xRS$k1+Um=$u[<)[S[LW#');
+define('SECURE_AUTH_KEY',  'XkG2=8[G2NCZnx`FQXxqKLFHV![4fAqAIKY,|=Y_CKsaT`1_G_ G/@ F@&as[NXH');
+define('LOGGED_IN_KEY',    'BOD;HHQ#UyiN+*%5S>b_e/2<8(#I20f8F=Qo(8HN&%kAx/6}I#2qtp3vhT@HY}Zs');
+define('NONCE_KEY',        'JOnV$Cvn&W[A,~6&|6MlF+7(P!E;xT&6~/ (b5>ESFs}F?ZYod]]xlsWC!vgx3^a');
+define('AUTH_SALT',        'NM^$!au++xj=e|`iFx(M89pP bLLYt,-qg@%yMq+<b<|Nt6[JzJA845c-4#*3e2s');
+define('SECURE_AUTH_SALT', '{:0P;v-+z:vK6J}Ka[T}r.bc] z3^| t(W Ki08:-0w{Fxp*d4DFB-?dbYPDFt%y');
+define('LOGGED_IN_SALT',   'W65|I;>($o%7Z1&FWvoC^cj>e!._{JKiiW-+7z678$k-r6O5:`BsFL2t^:-LS|l$');
+define('NONCE_SALT',       'jQ,Cr,RzjP=C_f *#9tRyK:i:+12U(8imAV/$s@7:U.&K:F)L|wvTN|*|#RmA2p2');
 
 /**#@-*/
 
